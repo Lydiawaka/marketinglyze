@@ -1,13 +1,31 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ArrowRight, BarChart3, Mail, Zap } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
 
 export default function Home() {
+
+   const paragraphs = [
+    "Marketinglyse helps brands grow smarter with AI-powered strategies that amplify performance and engagement.",
+    "We merge creativity with analytics; turning your marketing data into actionable insights for real results.",
+    "From email campaigns to lead generation, Marketinglyse ensures your brand stays visible, valuable, and ahead of the curve."
+  ]
+
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % paragraphs.length)
+    }, 4000) // switch every 4 seconds
+    return () => clearInterval(interval)
+  }, [paragraphs.length])
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -47,23 +65,54 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative hidden md:block">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-3xl" />
-                <Card className="relative border-primary/20 bg-white/50 backdrop-blur p-8">
-                  <div className="space-y-4">
-                    <div className="h-4 w-32 rounded bg-primary/20" />
-                    <div className="space-y-2">
-                      <div className="h-3 w-full rounded bg-muted" />
-                      <div className="h-3 w-5/6 rounded bg-muted" />
-                    </div>
-                    <div className="pt-4 flex gap-2">
-                      <div className="h-2 flex-1 rounded bg-success/50" />
-                      <div className="h-2 flex-1 rounded bg-accent/50" />
-                      <div className="h-2 flex-1 rounded bg-primary/50" />
-                    </div>
+             <div className="relative hidden md:block">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-3xl" />
+              <Card className="relative border-primary/20 bg-white/50 backdrop-blur p-8 overflow-hidden">
+                <div className="space-y-6 relative z-10">
+                  {/* Title */}
+                  <motion.h2
+                    className="text-2xl font-bold text-primary"
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    Marketinglyse
+                  </motion.h2>
+
+                  {/* Sliding paragraphs */}
+                  <div className="h-20 relative overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={index}
+                        className="absolute text-muted-foreground text-sm leading-relaxed"
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -30, opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                      >
+                        {paragraphs[index]}
+                      </motion.p>
+                    </AnimatePresence>
                   </div>
-                </Card>
-              </div>
+
+                  {/* Moving text line */}
+                  <motion.div
+                    className="text-primary font-medium text-sm"
+                    animate={{ x: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                  >
+                     Empowering digital growth, one strategy at a time.
+                  </motion.div>
+
+                  {/* Decorative bars */}
+                  <div className="pt-4 flex gap-2">
+                    <div className="h-2 flex-1 rounded bg-success/50" />
+                    <div className="h-2 flex-1 rounded bg-accent/50" />
+                    <div className="h-2 flex-1 rounded bg-primary/50" />
+                  </div>
+                </div>
+              </Card>
+            </div>
             </div>
           </div>
         </section>
