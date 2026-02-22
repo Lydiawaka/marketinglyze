@@ -32,7 +32,7 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-background to-background">
+        <section className="relative overflow-hidden bg-gradient-to-br from-white via-background to-background">
           <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-2 md:gap-8 lg:gap-12 items-center">
               <div className="flex flex-col gap-6">
@@ -165,7 +165,7 @@ export default function Home() {
                 <p className="text-muted-foreground mb-4 text-sm">
                   Marketing dashboards, ROI tracking, campaign analytics, and competitor analysis reports.
                 </p>
-                <Link href="/services" className="inline-flex items-center text-accent font-medium text-sm">
+                <Link href="/services" className="inline-flex items-center text-success font-medium text-sm">
                   View more <ArrowRight size={16} />
                 </Link>
               </Card>
@@ -186,7 +186,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Accuracy Rate</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-accent mb-2">500+</div>
+                <div className="text-4xl font-bold text-muted-success mb-2">500+</div>
                 <p className="text-muted-foreground">Active Clients</p>
               </div>
               <div className="text-center">

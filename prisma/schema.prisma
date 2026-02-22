@@ -1,0 +1,29 @@
+// prisma/schema.prisma
+model EmailTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  subject   String
+  body      String
+  variables Json     // e.g., ["name", "company", "position"]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  company   String?
+  position  String?
+  createdAt DateTime @default(now())
+}
+
+model EmailCampaign {
+  id        String   @id @default(cuid())
+  templateId String
+  template  EmailTemplate @relation(fields: [templateId], references: [id])
+  contacts  Json     // Array of contact IDs or emails
+  status    String   @default("draft") // draft, sending, sent
+  sentAt    DateTime?
+  createdAt DateTime @default(now())
+}

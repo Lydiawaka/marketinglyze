@@ -36,6 +36,19 @@ export default function ServicesPage() {
       ],
     },
     {
+    title: "Automated Email Campaigns",
+    icon: CheckCircle, 
+    color: "text-primary",
+    items: [
+      "Create & customize email templates",
+      "Personalize emails using variables",
+      "Send email campaigns automatically",
+      "Bulk email scheduling",
+      "Contact database integration",
+      "Real-time delivery & open-rate tracking",
+    ],
+  },
+    {
       title: "Brand Strategy & Design",
       icon: PenTool,
       color: "text-accent",
